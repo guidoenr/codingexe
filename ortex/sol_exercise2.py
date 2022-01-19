@@ -16,20 +16,35 @@ month = "02"
 test_data = {f"{x}": {"date": datetime.strptime(f"2021{month}{x:02d}", "%Y%m%d"),
                       'sales': float(x ** 2 / 7)} for x in range(1, 29)}
 ### Do not change anything in the section above, it is just setting up some sample data
-start=test_data["0"]
-end=test_data["27"]
+
+start = test_data["1"]
+end = test_data["27"]
+
+report_template = """
+Sales Report
+-----------------
+Report start date: {} 
+Starting Value: {} 
+
+Report end date: {} 
+Total sales: {} 
+"""
 
 def DateToDisplayDate(date):
     # E.g. Monday 8th February, 2021
     return (f"""{date.strftime("%a")} {date.strftime("%d")}th {date.strftime("%B")}, {date.strftime("%Y")}""")
-start["date"]=DateToDisplayDate(start["date"])
-end["date"]=DateToDisplayDate(end["date"])
-print("Sales Report\nReport start date:" + start["date"] + "starting value:" + str(start["sales"]) + "\\nReport end date:" + end["date"] + "total sales:" + str(end["sales"]) + "\n")
-total=None
-for k, v in test_data:
+
+start["date"] = DateToDisplayDate(start["date"])
+end["date"] = DateToDisplayDate(end["date"])
+
+#print(report_template.format(start["date"], str(start["sales"]), end["date"], str(end["sales"])))
+
+total=0
+
+for el in test_data:
     print("Date                                Sales    Month to Date  ")
-    if month is "2" and k is "29":
+    if month == "2" and el == "29":
         print("Leap year") # Must be displayed if data is for a leap year
-    print(f"{DateToDisplayDate(v['date'])} {v['sales']} ${total}")
-    total=v['sales']+total
-    print(f"Total sales for the month{total}")
+    print(f"{DateToDisplayDate(test_data[el]['date'])} {test_data[el]['sales']} ${total}")
+    total = test_data[el]['sales']+total
+    print(f"Total sales for the month {month}: {total}")
