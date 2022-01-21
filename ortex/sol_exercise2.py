@@ -1,3 +1,4 @@
+from cgi import test
 from datetime import datetime
 '''
 This task is to fix this code to write out a simple monthly report. The report should look professional.
@@ -39,12 +40,20 @@ end["date"] = DateToDisplayDate(end["date"])
 
 #print(report_template.format(start["date"], str(start["sales"]), end["date"], str(end["sales"])))
 
-total=0
+report_tmp = """
+Month: {} 
+Date: {}
+Total sales: {}
+"""
 
-for el in test_data:
-    print("Date                                Sales    Month to Date  ")
-    if month == "2" and el == "29":
-        print("Leap year") # Must be displayed if data is for a leap year
-    print(f"{DateToDisplayDate(test_data[el]['date'])} {test_data[el]['sales']} ${total}")
-    total = test_data[el]['sales']+total
-    print(f"Total sales for the month {month}: {total}")
+def create_report():
+    total=0
+    for el in test_data:
+        if month == "2" and el == "29":
+            print("Leap year")
+        date = test_data[el]['date']
+        sales = test_data[el]['sales']
+        total = test_data[el]['sales'] + total
+    print(report_tmp.format(month, date, total))
+
+create_report()
