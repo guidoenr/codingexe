@@ -10,7 +10,6 @@ COINGECKO_API = 'https://api.coingecko.com/api/v3'
 
 def get_request(subdomain:str, *params):
     url = COINGECKO_API + subdomain
-    logger.log(f'GET to {subdomain}, params={params}')
     return requests.get(url, *params).json()
 
 if __name__ == '__main__':
@@ -22,4 +21,4 @@ if __name__ == '__main__':
         'market_data': 'true',
         'page': 1
     }
-    get_request("/coins/solana/")
+    get_request("/coins/solana/", payload)
