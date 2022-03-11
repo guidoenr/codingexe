@@ -6,7 +6,6 @@ import logger
 def config(filename='database.ini', section='postgresql'):
     parser = ConfigParser()
     parser.read(filename)
-
     db = {}
     if parser.has_section(section):
         params = parser.items(section)
@@ -17,12 +16,10 @@ def config(filename='database.ini', section='postgresql'):
 
     return db
 
-def get_engine():
+def get_engine_and_session():
     params = config()
     db_uri = 'postgresql+psycopg2://{user}:{password}@{host}/{database}'.format(**params)
     engine = create_engine(db_uri, echo=True)
-    return engine
+    Session = sessionmaker(engine)
+    return engine, Session()
 
-def get_session():
-    Session = sessionmaker(get_engine())
-    return Session()
