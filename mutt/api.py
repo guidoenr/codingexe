@@ -5,7 +5,6 @@
 import requests
 import logger
 
-
 COINGECKO_API = 'https://api.coingecko.com/api/v3'
 
 def get_request(subdomain:str, *params):
