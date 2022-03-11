@@ -21,4 +21,4 @@ if __name__ == '__main__':
         'market_data': 'true',
         'page': 1
     }
-    get_request("/coins/solana/", payload)
+    get_request("/coins/solana/")
