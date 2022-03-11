@@ -3,7 +3,6 @@
 # @gitlab: /guidoenr
 
 import requests
-import json
 import logger
 
 
