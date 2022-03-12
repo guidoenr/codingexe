@@ -1,7 +1,6 @@
 from configparser import ConfigParser
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import logger
 
 def config(filename='database.ini', section='postgresql'):
     parser = ConfigParser()
