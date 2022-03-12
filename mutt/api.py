@@ -14,7 +14,10 @@ def get_data(subdomain:str, *params): # params could be optional
     return requests.get(url, *params).json() # dict
 
 def prettify_data(data:dict):
-    print(json.dumps(data, indent=3))
+    pretty = json.dumps(data, indent=3)
+    with open('cache.json', 'w') as f:
+        f.write(pretty)
+    print(pretty)
 
 
 if __name__ == '__main__':

@@ -12,6 +12,7 @@ class Coin(Base):
     name = Column(String(25), nullable=False, unique=True)
     symbol = Column(String(3), nullable=False, unique=True)
     homepage = Column(String(30))
+    hashing_algorithm = Column(String(20), default='None')
     price_change_24h = Column(Integer())
 
 
@@ -22,4 +23,4 @@ def init():
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 
-init()
+init() # TODO esto
